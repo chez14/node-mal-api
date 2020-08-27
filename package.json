@@ -26,7 +26,10 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint:format": "prettier --write \"packages/**/*.{ts,js}\"",
     "lint": "tslint -p tsconfig.json"
+  },
+  "dependencies": {
+    "ts-jest": "^26.3.0"
   }
 }
