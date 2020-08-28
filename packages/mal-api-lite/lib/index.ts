@@ -64,7 +64,7 @@ export class MALClient {
    * @param codeVerifier PKCE Code Challenge
    * @param redirectUri Redirect url, specified on on previous step
    */
-  public async getTokensFromAuthCode(authCode: string, codeVerifier: string, redirectUri?: string): Promise<any> {
+  public async resolveAuthCode(authCode: string, codeVerifier: string, redirectUri?: string): Promise<any> {
     if (!this.clientSecret || !this.clientId) {
       throw new Error('clientSecret and clientId must be filled to use this function!');
     }
@@ -127,7 +127,7 @@ export class MALClient {
    * Refresh your access token with refresh token. Sounds amazing, right?
    * @param refreshToken Custom refresh token
    */
-  public async refreshAccessToken(refreshToken?: string): Promise<any> {
+  public async resolveRefreshToken(refreshToken?: string): Promise<any> {
     if (!refreshToken) {
       refreshToken = this.refreshToken;
     }
@@ -156,7 +156,7 @@ export class MALClient {
         throw new Error('accessToken and/or refreshToken must be filled to use this function!');
       }
 
-      await this.refreshAccessToken();
+      await this.resolveRefreshToken();
       return false;
     }
     return true;
@@ -176,6 +176,9 @@ export class MALClient {
 
     if (response.statusCode === 401 && !viaRefreshToken) {
       // attempt to request the access token, then rerequest;
+      if (!this.refreshToken) {
+        return response.body;
+      }
       this.accessToken = undefined;
       return this.get(resource, param);
     }
