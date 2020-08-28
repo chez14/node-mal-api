@@ -6,5 +6,10 @@
     ],
     "jsRules": {},
     "rules": {},
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "packages/*/build"
+        ]
+    }
 }
