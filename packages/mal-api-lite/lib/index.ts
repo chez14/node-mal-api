@@ -69,7 +69,7 @@ export class MALClient {
       throw new Error('clientSecret and clientId must be filled to use this function!');
     }
 
-    const resp: any = await got.post('token', {
+    const resp: any = await this.gotOAuth.post('token', {
       form: {
         client_id: this.clientId,
         client_secret: this.clientSecret,
@@ -113,7 +113,7 @@ export class MALClient {
       code_challenge_method: codeChallengeMethod,
     };
 
-    const urlBuilder = new URL('authorize');
+    const urlBuilder = new URL('authorize', this.gotOAuth.defaults.options.prefixUrl);
     Object.keys(query).forEach((key) => {
       if (query[key]) {
         urlBuilder.searchParams.append(key, query[key]);
@@ -131,7 +131,7 @@ export class MALClient {
     if (!refreshToken) {
       refreshToken = this.refreshToken;
     }
-    const resp: any = await this.got.post('token', {
+    const resp: any = await this.gotOAuth.post('token', {
       form: {
         client_id: this.clientId,
         client_secret: this.clientSecret,
