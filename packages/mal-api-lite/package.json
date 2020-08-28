@@ -29,7 +29,8 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "build:watch": "tsc -w"
   },
   "bugs": {
     "url": "https://github.com/chez14/node-mal-api/issues"
