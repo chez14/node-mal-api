@@ -30,11 +30,11 @@ export class MALClient {
     accessToken,
     refreshToken,
     gotOptions = {
-      prefixUrl: 'https://api.myanimelist.net/v2',
+      prefixUrl: 'https://api.myanimelist.net/v2/',
       responseType: 'json',
     },
     gotOAuthOptions = {
-      prefixUrl: 'https://api.myanimelist.net/v1/oauth2',
+      prefixUrl: 'https://myanimelist.net/v1/oauth2/',
       responseType: 'json',
     },
   }: Options) {
@@ -115,7 +115,9 @@ export class MALClient {
 
     const urlBuilder = new URL('authorize', this.gotOAuthOptions?.prefixUrl);
     Object.keys(query).forEach((key) => {
-      urlBuilder.searchParams.append(key, query[key]);
+      if (query[key]) {
+        urlBuilder.searchParams.append(key, query[key]);
+      }
     });
 
     return urlBuilder.toString();
