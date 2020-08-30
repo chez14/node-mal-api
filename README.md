@@ -1,7 +1,5 @@
 # MyAnimeList.net API Client for Node.js
 
-**I'M STILL WORKING ON THIS**
-
 This repo has several version (as a package) you can choose:
 
 - [Lite version](packages/mal-api-lite/) of the API Client ([Docs](packages/mal-api-lite/), [NPM](https://www.npmjs.com/package/@chez14/mal-api-lite))

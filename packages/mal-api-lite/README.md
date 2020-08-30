@@ -164,7 +164,7 @@ console.log(animeInfo);
 | refreshToken: string                                         | yes, to use API               | `undefined`       | Self explanatory.                                            |
 | gotOptions: [GotOptions](https://www.npmjs.com/package/got)  | no                            | (see it yourself) | Add your options for the Got. Things like proxy, and etcs.   |
 | gotOAuthOptions: [GotOptions](https://www.npmjs.com/package/got) | no                            | (see it yourself) | Same like above, but for OAuth related stuffs.               |
-| autoRefreshAccessToken: boolean                              | no                            | `false`           | We're able to request update for your access token when it gor `401`ed. We'll use `refreshToken` to request update automatically. This way, you'll be guaranteed to be able to access all API with ease.<br /><br />**⚠ WARN:** You'll need to save the `refrehsToken` afterwards. Old refresh token will be revoked once used to refresh the `accessToken`. |
+| autoRefreshAccessToken: boolean                              | no                            | `false`           | We're able to request update for your access token when it got `401`ed on "GET". We'll use `refreshToken` to request update automatically. This way, you'll be guaranteed to be able to access all API with ease.<br /><br />**⚠ WARN:** You'll need to save the `refrehsToken` afterwards. Old refresh token will be revoked once used to refresh the `accessToken`. |
 
 ### Methods
 
