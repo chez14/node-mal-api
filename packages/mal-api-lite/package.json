@@ -28,7 +28,6 @@
     "url": "git+https://github.com/chez14/node-mal-api.git"
   },
   "scripts": {
-    "test": "jest",
     "build": "tsc",
     "build:watch": "tsc -w"
   },
