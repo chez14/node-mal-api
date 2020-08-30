@@ -2,7 +2,7 @@ import got, { Options as GotOptions, Got } from 'got';
 
 import { URL } from 'url';
 import { PaginatableRequest, BaseRequest } from './RequestInterface';
-import { randomBytes } from "crypto";
+import { randomBytes } from 'crypto';
 
 export interface Options {
   clientId?: string;
@@ -28,8 +28,11 @@ export class MALClient {
 
   public PKCEChallangeGenerateSize: number = 32;
 
+
+
   /**
    * Create MAL API Client
+   *
    * @param param0 Your trusty configuration
    */
   public constructor({ clientId, clientSecret, accessToken, refreshToken, gotOptions, gotOAuthOptions }: Options) {
@@ -37,7 +40,7 @@ export class MALClient {
       // if either ( clientSecret or clientId ) not preset, AND accessToken or
       // refreshToken is provided...
       throw new Error(
-        'either you provide both `clientSecret` and `clientId` OR one of `accessToken` or `refreshToken`',
+        'either you provide both (`clientSecret` and `clientId`) OR one of (`accessToken` or `refreshToken`)',
       );
     }
 
@@ -60,6 +63,9 @@ export class MALClient {
       ...gotOAuthOptions,
     });
   }
+
+
+
   /**
    * Get Access Token & Refresh Token from given Authorization Code.
    *
@@ -88,7 +94,11 @@ export class MALClient {
     return resp.body;
   }
 
+
+
   /**
+   * Generate OAuth URL to gain access to user account on MyAnimeList platform.
+   * Will require clientId and clientSecret from custructor.
    *
    * @param codeChallenge PKCE Code Challenge
    * @param redirectUri If you have more than one Redirect URL, please specify
@@ -97,7 +107,11 @@ export class MALClient {
    * @param codeChallengeMethod Only accept "plain". Don't change unless you know
    * what you're doing!
    */
-  public getOAuthURL(redirectUri?: string, codeChallenge?: string, state?: string): ({ url: string, codeChallenge: string }) {
+  public getOAuthURL(
+    redirectUri?: string,
+    codeChallenge?: string,
+    state?: string,
+  ): { url: string; codeChallenge: string; state?: string } {
     if (!this.clientSecret || !this.clientId) {
       throw new Error('clientSecret and clientId must be filled to use this function!');
     }
@@ -122,11 +136,14 @@ export class MALClient {
       }
     });
 
-    return { url: urlBuilder.toString(), codeChallenge };
+    return { url: urlBuilder.toString(), codeChallenge, state };
   }
+
+
 
   /**
    * Refresh your access token with refresh token. Sounds amazing, right?
+   *
    * @param refreshToken Custom refresh token
    */
   public async resolveRefreshToken(refreshToken?: string): Promise<any> {
@@ -147,6 +164,8 @@ export class MALClient {
     return resp.body;
   }
 
+
+
   /**
    * Checks for request requirements, such as refresh tokens checkings.
    *
@@ -164,15 +183,18 @@ export class MALClient {
     return true;
   }
 
+
+
   /**
    * Do HTTP GET stuffs.
+   *
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async get(resource: string, param?: PaginatableRequest): Promise<any> {
+  public async get<T = any>(resource: string, param?: PaginatableRequest): Promise<T> {
     const viaRefreshToken = !(await this.preRequest());
 
-    const response = await this.got.get(resource, {
+    const response = await this.got.get<T>(resource, {
       searchParams: param,
     });
 
@@ -188,47 +210,59 @@ export class MALClient {
     return response.body;
   }
 
+
+
   /**
    * Do HTTP POST stuffs.
+   *
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async post(resource: string, param?: BaseRequest): Promise<any> {
+  public async post<T = any>(resource: string, param?: BaseRequest): Promise<T> {
     await this.preRequest();
-    const response = await this.got.patch(resource, {
+    const response = await this.got.patch<T>(resource, {
       form: param,
     });
     return response.body;
   }
+
+
 
   /**
    * Do HTTP PATCH stuffs.
+   *
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async patch(resource: string, param?: BaseRequest): Promise<any> {
+  public async patch<T = any>(resource: string, param?: BaseRequest): Promise<T> {
     await this.preRequest();
-    const response = await this.got.patch(resource, {
+    const response = await this.got.patch<T>(resource, {
       form: param,
     });
     return response.body;
   }
+
+
 
   /**
    * Do HTTP PUT stuffs.
+   *
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async put(resource: string, param?: BaseRequest): Promise<any> {
+  public async put<T = any>(resource: string, param?: BaseRequest): Promise<T> {
     await this.preRequest();
-    const response = await this.got.put(resource, {
+    const response = await this.got.put<T>(resource, {
       form: param,
     });
     return response.body;
   }
 
+
+
   /**
    * Do HTTP DELETE stuffs.
+   *
    * @param resource Url to call
    * @param param Parameter body (discouraged)
    */
