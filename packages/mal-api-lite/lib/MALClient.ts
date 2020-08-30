@@ -285,9 +285,9 @@ export class MALClient {
    * @param resource Url to call
    * @param param Parameter body (discouraged)
    */
-  public async delete(resource: string, param?: BaseRequest): Promise<any> {
+  public async delete<T = any>(resource: string, param?: BaseRequest): Promise<T> {
     await this.preRequest();
-    const response = await this.got.delete(resource, {
+    const response = await this.got.delete<T>(resource, {
       searchParams: param,
     });
     return response.body;
