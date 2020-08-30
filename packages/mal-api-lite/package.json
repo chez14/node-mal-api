@@ -28,7 +28,7 @@
     "url": "git+https://github.com/chez14/node-mal-api.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
+    "test": "jest",
     "build": "tsc",
     "build:watch": "tsc -w"
   },

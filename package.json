@@ -11,6 +11,8 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@auto-it/all-contributors": "^9.52.0",
+    "@auto-it/first-time-contributor": "^9.52.0",
     "@types/jest": "^26.0.10",
     "@types/node": "^14.6.0",
     "jest": "^26.4.2",
@@ -24,11 +26,22 @@
     "packages/*"
   ],
   "scripts": {
+    "test": "lerna exec yarn run test",
     "build": "lerna run build",
     "lint:format": "tslint -p tsconfig.json --fix",
     "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
     "ts-jest": "^26.3.0"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "all-contributors",
+      "first-time-contributor",
+      "released"
+    ],
+    "name": "Replica (レプリカ)",
+    "email": "bots+repurika@christianto.net"
   }
 }
