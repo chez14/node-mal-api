@@ -31,6 +31,8 @@ export class MALClient {
 
   public autoRefreshAccessToken: boolean;
 
+  public userAgent: string = "@chez14/mal-api-lite";
+
 
 
   /**
@@ -53,10 +55,14 @@ export class MALClient {
     this.refreshToken = refreshToken;
     this.autoRefreshAccessToken = autoRefreshAccessToken;
 
+    const packageVersion = require(__dirname + "/../package.json").version;
+    this.userAgent += " v" + packageVersion;
+
     this.got = got.extend({
       ...{
         prefixUrl: 'https://api.myanimelist.net/v2/',
         responseType: 'json',
+        headers: { userAgent: this.userAgent },
         hooks: {
           beforeRequest: [
             (options) => {
@@ -70,6 +76,7 @@ export class MALClient {
     this.gotOAuth = got.extend({
       ...{
         prefixUrl: 'https://myanimelist.net/v1/oauth2/',
+        headers: { userAgent: this.userAgent },
         responseType: 'json',
       },
       ...gotOAuthOptions,
