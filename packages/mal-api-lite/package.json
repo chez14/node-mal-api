@@ -8,7 +8,7 @@
     "api",
     "lite"
   ],
-  "author": "Chris <christianto.g.14@gmail.com>",
+  "author": "Chris Qiang <chris@christianto.net>",
   "homepage": "https://github.com/chez14/node-mal-api/tree/master/packages/mal-api-lite#readme",
   "license": "MIT",
   "main": "build/index.js",
@@ -28,7 +28,6 @@
     "url": "git+https://github.com/chez14/node-mal-api.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "tsc",
     "build:watch": "tsc -w"
   },

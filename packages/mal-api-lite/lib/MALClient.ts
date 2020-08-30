@@ -1,4 +1,4 @@
-import got, { Options as GotOptions, Got } from 'got';
+import got, { Options as GotOptions, Got, HTTPError } from 'got';
 
 import { URL } from 'url';
 import { PaginatableRequest, BaseRequest } from './RequestInterface';
@@ -31,6 +31,8 @@ export class MALClient {
 
   public autoRefreshAccessToken: boolean;
 
+  public userAgent: string = "@chez14/mal-api-lite";
+
 
 
   /**
@@ -53,10 +55,14 @@ export class MALClient {
     this.refreshToken = refreshToken;
     this.autoRefreshAccessToken = autoRefreshAccessToken;
 
+    const packageVersion = require(__dirname + "/../package.json").version;
+    this.userAgent += " v" + packageVersion;
+
     this.got = got.extend({
       ...{
         prefixUrl: 'https://api.myanimelist.net/v2/',
         responseType: 'json',
+        headers: { userAgent: this.userAgent },
         hooks: {
           beforeRequest: [
             (options) => {
@@ -70,6 +76,7 @@ export class MALClient {
     this.gotOAuth = got.extend({
       ...{
         prefixUrl: 'https://myanimelist.net/v1/oauth2/',
+        headers: { userAgent: this.userAgent },
         responseType: 'json',
       },
       ...gotOAuthOptions,
@@ -212,21 +219,22 @@ export class MALClient {
     if (param?.fields && Array.isArray(param.fields)) {
       param.fields = param.fields.join(",");
     }
-
-    const response = await this.got.get<T>(resource, {
-      searchParams: param,
-    });
-
-    if (response.statusCode === 401 && !viaRefreshToken) {
-      // attempt to request the access token, then rerequest;
-      if (!this.refreshToken) {
-        return response.body;
+    try {
+      const response = await this.got.get<T>(resource, {
+        searchParams: param,
+      });
+      return response.body;
+    } catch (e) {
+      if (e instanceof HTTPError && e.response.statusCode === 401 && !viaRefreshToken) {
+        // attempt to request the access token, then rerequest;
+        if (!this.refreshToken) {
+          throw e;
+        }
+        this.accessToken = undefined;
+        return this.get(resource, param);
       }
-      this.accessToken = undefined;
-      return this.get(resource, param);
+      throw e;
     }
-
-    return response.body;
   }
 
 
