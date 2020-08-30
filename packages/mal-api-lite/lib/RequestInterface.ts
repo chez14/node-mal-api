@@ -3,7 +3,7 @@ export interface BaseRequest {
 }
 
 export interface PaginatableRequest extends BaseRequest {
-  limit: number;
-  offset: number;
-  fields: string;
+  limit?: number;
+  offset?: number;
+  fields?: string | string[];
 }

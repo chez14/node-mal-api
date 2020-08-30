@@ -11,6 +11,7 @@ export interface Options {
   refreshToken?: string;
   gotOptions?: GotOptions;
   gotOAuthOptions?: GotOptions;
+  autoRefreshAccessToken?: boolean;
 }
 
 export class MALClient {
@@ -28,6 +29,8 @@ export class MALClient {
 
   public PKCEChallangeGenerateSize: number = 32;
 
+  public autoRefreshAccessToken: boolean;
+
 
 
   /**
@@ -35,7 +38,7 @@ export class MALClient {
    *
    * @param param0 Your trusty configuration
    */
-  public constructor({ clientId, clientSecret, accessToken, refreshToken, gotOptions, gotOAuthOptions }: Options) {
+  public constructor({ clientId, clientSecret, accessToken, refreshToken, gotOptions, gotOAuthOptions, autoRefreshAccessToken = false }: Options) {
     if ((!clientSecret || !clientId) && !(accessToken || refreshToken)) {
       // if either ( clientSecret or clientId ) not preset, AND accessToken or
       // refreshToken is provided...
@@ -48,10 +51,19 @@ export class MALClient {
     this.clientSecret = clientSecret;
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
+    this.autoRefreshAccessToken = autoRefreshAccessToken;
+
     this.got = got.extend({
       ...{
         prefixUrl: 'https://api.myanimelist.net/v2/',
         responseType: 'json',
+        hooks: {
+          beforeRequest: [
+            (options) => {
+              options.headers.authorization = ["Bearer", this.accessToken].join(" ");
+            }
+          ]
+        }
       },
       ...gotOptions,
     });
@@ -173,6 +185,9 @@ export class MALClient {
    */
   protected async preRequest(): Promise<boolean> {
     if (!this.accessToken) {
+      if (!this.autoRefreshAccessToken) {
+        throw new Error('accessToken must be filled to use this function while autoRefreshAccessToken is turned off!');
+      }
       if (!this.refreshToken) {
         throw new Error('accessToken and/or refreshToken must be filled to use this function!');
       }
@@ -193,6 +208,10 @@ export class MALClient {
    */
   public async get<T = any>(resource: string, param?: PaginatableRequest): Promise<T> {
     const viaRefreshToken = !(await this.preRequest());
+
+    if (param?.fields && Array.isArray(param.fields)) {
+      param.fields = param.fields.join(",");
+    }
 
     const response = await this.got.get<T>(resource, {
       searchParams: param,
