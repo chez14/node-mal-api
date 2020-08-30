@@ -5,8 +5,14 @@
         "tslint-config-prettier"
     ],
     "jsRules": {},
-    "rules": {},
-    "rulesDirectory": [],
+    "rules": {
+        "no-console": [true, "log", "error"],
+        "curly": true,
+        "lines-between-class-members": [true, 3]
+    },
+    "rulesDirectory": [
+        "node_modules/tslint-lines-between-class-members"
+    ],
     "linterOptions": {
         "exclude": [
             "packages/*/build"
