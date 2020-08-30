@@ -13,7 +13,27 @@ To see the API Documentation, please consult to:
 
 ## Table of Contents
 
-[[_TOC_]]
+- [MyAnimeList.net API Client for Node.js: Lite Version](#myanimelistnet-api-client-for-nodejs-lite-version)
+  - [Features](#features)
+  - [Table of Contents](#table-of-contents)
+  - [Usage](#usage)
+    - [Install](#install)
+    - [Consuming the API](#consuming-the-api)
+      - [Get Animes from Winter 2020](#get-animes-from-winter-2020)
+      - [Get Anime Info](#get-anime-info)
+  - [Docs](#docs)
+    - [Constructor Options](#constructor-options)
+    - [Methods](#methods)
+      - [get](#get)
+      - [patch](#patch)
+      - [put](#put)
+      - [delete](#delete)
+      - [post](#post)
+      - [getOAuthURL](#getoauthurl)
+      - [resolveAuthCode](#resolveauthcode)
+      - [resolveRefreshToken](#resolverefreshtoken)
+  - [FAQ](#faq)
+  - [License](#license)
 
 ## Usage
 
