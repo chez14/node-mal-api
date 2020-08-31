@@ -1,7 +1,7 @@
 import got, { Options as GotOptions, Got, HTTPError } from 'got';
 
 import { URL } from 'url';
-import { PaginatableRequest, BaseRequest } from './RequestInterface';
+import { PaginatableRequest, BaseRequest, BaseRequester, TokenResponse } from './RequestInterface';
 import { randomBytes } from 'crypto';
 
 export interface Options {
@@ -14,7 +14,7 @@ export interface Options {
   autoRefreshAccessToken?: boolean;
 }
 
-export class MALClient {
+export class MALClient implements BaseRequester {
   public clientId?: string;
 
   public clientSecret?: string;
@@ -27,11 +27,11 @@ export class MALClient {
 
   public gotOAuth: Got;
 
-  public PKCEChallangeGenerateSize: number = 32;
+  public PKCEChallangeGenerateSize = 32;
 
   public autoRefreshAccessToken: boolean;
 
-  public userAgent: string = "@chez14/mal-api-lite";
+  public userAgent = '@chez14/mal-api-lite';
 
 
 
@@ -55,8 +55,8 @@ export class MALClient {
     this.refreshToken = refreshToken;
     this.autoRefreshAccessToken = autoRefreshAccessToken;
 
-    const packageVersion = require(__dirname + "/../package.json").version;
-    this.userAgent += " v" + packageVersion;
+    const packageVersion = require(__dirname + '/../package.json').version;
+    this.userAgent += ' v' + packageVersion;
 
     this.got = got.extend({
       ...{
@@ -66,7 +66,7 @@ export class MALClient {
         hooks: {
           beforeRequest: [
             (options) => {
-              options.headers.authorization = ["Bearer", this.accessToken].join(" ");
+              options.headers.authorization = ['Bearer', this.accessToken].join(' ');
             }
           ]
         }
@@ -92,12 +92,12 @@ export class MALClient {
    * @param codeVerifier PKCE Code Challenge
    * @param redirectUri Redirect url, specified on on previous step
    */
-  public async resolveAuthCode(authCode: string, codeVerifier: string, redirectUri?: string): Promise<any> {
+  public async resolveAuthCode(authCode: string, codeVerifier: string, redirectUri?: string): Promise<TokenResponse> {
     if (!this.clientSecret || !this.clientId) {
       throw new Error('clientSecret and clientId must be filled to use this function!');
     }
 
-    const resp: any = await this.gotOAuth.post('token', {
+    const resp = await this.gotOAuth.post<TokenResponse>('token', {
       form: {
         client_id: this.clientId,
         client_secret: this.clientSecret,
@@ -139,7 +139,7 @@ export class MALClient {
       codeChallenge = randomBytes(this.PKCEChallangeGenerateSize).toString();
     }
 
-    const query: any = {
+    const query: Record<string, string | undefined> = {
       response_type: 'code',
       client_id: this.clientId,
       state,
@@ -151,7 +151,8 @@ export class MALClient {
     const urlBuilder = new URL('authorize', this.gotOAuth.defaults.options.prefixUrl);
     Object.keys(query).forEach((key) => {
       if (query[key]) {
-        urlBuilder.searchParams.append(key, query[key]);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        urlBuilder.searchParams.append(key, query[key]!);
       }
     });
 
@@ -165,11 +166,11 @@ export class MALClient {
    *
    * @param refreshToken Custom refresh token
    */
-  public async resolveRefreshToken(refreshToken?: string): Promise<any> {
+  public async resolveRefreshToken(refreshToken?: string): Promise<TokenResponse> {
     if (!refreshToken) {
       refreshToken = this.refreshToken;
     }
-    const resp: any = await this.gotOAuth.post('token', {
+    const resp = await this.gotOAuth.post<TokenResponse>('token', {
       form: {
         client_id: this.clientId,
         client_secret: this.clientSecret,
@@ -213,11 +214,11 @@ export class MALClient {
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async get<T = any>(resource: string, param?: PaginatableRequest): Promise<T> {
+  public async get<T = any>(resource: string, param?: PaginatableRequest): Promise<T> { // eslint-disable-line @typescript-eslint/no-explicit-any
     const viaRefreshToken = !(await this.preRequest());
 
     if (param?.fields && Array.isArray(param.fields)) {
-      param.fields = param.fields.join(",");
+      param.fields = param.fields.join(',');
     }
     try {
       const response = await this.got.get<T>(resource, {
@@ -231,7 +232,7 @@ export class MALClient {
           throw e;
         }
         this.accessToken = undefined;
-        return this.get(resource, param);
+        return this.get<T>(resource, param);
       }
       throw e;
     }
@@ -245,7 +246,7 @@ export class MALClient {
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async post<T = any>(resource: string, param?: BaseRequest): Promise<T> {
+  public async post<T = any>(resource: string, param?: BaseRequest): Promise<T> { // eslint-disable-line @typescript-eslint/no-explicit-any
     await this.preRequest();
     const response = await this.got.patch<T>(resource, {
       form: param,
@@ -261,7 +262,7 @@ export class MALClient {
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async patch<T = any>(resource: string, param?: BaseRequest): Promise<T> {
+  public async patch<T = any>(resource: string, param?: BaseRequest): Promise<T> { // eslint-disable-line @typescript-eslint/no-explicit-any
     await this.preRequest();
     const response = await this.got.patch<T>(resource, {
       form: param,
@@ -277,7 +278,7 @@ export class MALClient {
    * @param resource Url to call
    * @param param Parameter body
    */
-  public async put<T = any>(resource: string, param?: BaseRequest): Promise<T> {
+  public async put<T = any>(resource: string, param?: BaseRequest): Promise<T> { // eslint-disable-line @typescript-eslint/no-explicit-any
     await this.preRequest();
     const response = await this.got.put<T>(resource, {
       form: param,
@@ -293,7 +294,7 @@ export class MALClient {
    * @param resource Url to call
    * @param param Parameter body (discouraged)
    */
-  public async delete<T = any>(resource: string, param?: BaseRequest): Promise<T> {
+  public async delete<T = any>(resource: string, param?: BaseRequest): Promise<T> { // eslint-disable-line @typescript-eslint/no-explicit-any
     await this.preRequest();
     const response = await this.got.delete<T>(resource, {
       searchParams: param,
