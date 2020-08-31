@@ -29,6 +29,7 @@
     "packages/*"
   ],
   "scripts": {
+    "pretest": "yarn run lint",
     "test": "jest",
     "build": "lerna run build",
     "lint:format": "eslint --fix packages/ --ext .js,.ts",
