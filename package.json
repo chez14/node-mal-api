@@ -31,8 +31,8 @@
   "scripts": {
     "test": "jest",
     "build": "lerna run build",
-    "lint:format": "eslint --fix",
-    "lint": "eslint",
+    "lint:format": "eslint --fix packages/ --ext .js,.ts",
+    "lint": "eslint packages/ --ext .js,.ts",
     "release": "auto shipit"
   },
   "dependencies": {
