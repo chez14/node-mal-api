@@ -1,3 +1,25 @@
+# v1.0.1 (Mon Aug 31 2020)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Cristopher ([@Namchee](https://github.com/Namchee)), for all your work!
+
+#### 🐛 Bug Fix
+
+- `@chez14/mal-api-lite`
+  - Lint configuration [#4](https://github.com/chez14/node-mal-api/pull/4) ([@chez14](https://github.com/chez14))
+
+#### 🧪 Tests
+
+- Migrate from tslint to eslint + @typescript-eslint [#3](https://github.com/chez14/node-mal-api/pull/3) ([@Namchee](https://github.com/Namchee))
+
+#### Authors: 2
+
+- Chris Qiang ([@chez14](https://github.com/chez14))
+- Cristopher ([@Namchee](https://github.com/Namchee))
+
+---
+
 # v1.0.0 (Sun Aug 30 2020)
 
 :tada: This release contains work from a new contributor! :tada:

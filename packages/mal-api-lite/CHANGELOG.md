@@ -1,3 +1,16 @@
+# v1.0.1 (Mon Aug 31 2020)
+
+#### 🐛 Bug Fix
+
+- Lint configuration [#4](https://github.com/chez14/node-mal-api/pull/4) ([@chez14](https://github.com/chez14))
+- Run linter and fixing some return types. ([@chez14](https://github.com/chez14))
+
+#### Authors: 1
+
+- Chris Qiang ([@chez14](https://github.com/chez14))
+
+---
+
 # v1.0.0 (Sun Aug 30 2020)
 
 :tada: This release contains work from a new contributor! :tada:
