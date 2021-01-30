@@ -1,3 +1,28 @@
+# v1.1.0 (Sat Jan 30 2021)
+
+#### 🚀 Enhancement
+
+- Bump node-notifier from 8.0.0 to 8.0.1 [#13](https://github.com/chez14/node-mal-api/pull/13) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### 🔩 Dependency Updates
+
+- Bump ini from 1.3.5 to 1.3.8 [#14](https://github.com/chez14/node-mal-api/pull/14) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 9.52.0 to 10.13.3 [#8](https://github.com/chez14/node-mal-api/pull/8) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@chez14](https://github.com/chez14))
+- Bump ts-jest from 26.3.0 to 26.5.0 [#11](https://github.com/chez14/node-mal-api/pull/11) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 3.10.1 to 4.0.0 [#9](https://github.com/chez14/node-mal-api/pull/9) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/setup-node from v1 to v2.1.4 [#6](https://github.com/chez14/node-mal-api/pull/6) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/cache from v1 to v2.1.3 [#7](https://github.com/chez14/node-mal-api/pull/7) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-node from 9.0.0 to 9.1.1 [#12](https://github.com/chez14/node-mal-api/pull/12) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump jest from 26.4.2 to 26.6.3 [#10](https://github.com/chez14/node-mal-api/pull/10) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Add dependabot support for git [#5](https://github.com/chez14/node-mal-api/pull/5) ([@chez14](https://github.com/chez14))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Chris Qiang ([@chez14](https://github.com/chez14))
+
+---
+
 # v1.0.1 (Mon Aug 31 2020)
 
 :tada: This release contains work from a new contributor! :tada:
