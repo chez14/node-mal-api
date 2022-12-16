@@ -1,3 +1,48 @@
+# v1.1.1 (Fri Dec 16 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Update dependabot.yml ([@chez14](https://github.com/chez14))
+- Create dependabot-auto-merge.yml ([@chez14](https://github.com/chez14))
+
+#### 🔩 Dependency Updates
+
+- Bump minimist from 1.2.5 to 1.2.6 [#213](https://github.com/chez14/node-mal-api/pull/213) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/cache from v2.1.4 to v2.1.5 [#89](https://github.com/chez14/node-mal-api/pull/89) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/jest from 26.0.20 to 26.0.22 [#83](https://github.com/chez14/node-mal-api/pull/83) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 7.21.0 to 7.24.0 [#86](https://github.com/chez14/node-mal-api/pull/86) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-jest from 26.5.3 to 26.5.4 [#87](https://github.com/chez14/node-mal-api/pull/87) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.2.3 to 4.2.4 [#85](https://github.com/chez14/node-mal-api/pull/85) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 3.22.1 to 4.0.0 [#45](https://github.com/chez14/node-mal-api/pull/45) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 14.14.32 to 14.14.37 [#75](https://github.com/chez14/node-mal-api/pull/75) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nock from 13.0.10 to 13.0.11 [#53](https://github.com/chez14/node-mal-api/pull/53) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 14.14.31 to 14.14.32 [#52](https://github.com/chez14/node-mal-api/pull/52) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.2.2 to 4.2.3 [#51](https://github.com/chez14/node-mal-api/pull/51) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.18.1 to 10.18.3 [#50](https://github.com/chez14/node-mal-api/pull/50) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-jest from 26.5.2 to 26.5.3 [#49](https://github.com/chez14/node-mal-api/pull/49) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nock from 13.0.9 to 13.0.10 [#46](https://github.com/chez14/node-mal-api/pull/46) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.16.8 to 10.18.1 [#44](https://github.com/chez14/node-mal-api/pull/44) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump got from 11.8.1 to 11.8.2 [#43](https://github.com/chez14/node-mal-api/pull/43) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nock from 13.0.8 to 13.0.9 [#42](https://github.com/chez14/node-mal-api/pull/42) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 7.20.0 to 7.21.0 [#41](https://github.com/chez14/node-mal-api/pull/41) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-jest from 26.5.0 to 26.5.2 [#40](https://github.com/chez14/node-mal-api/pull/40) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.0.2 to 4.2.2 [#39](https://github.com/chez14/node-mal-api/pull/39) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 14.6.1 to 14.14.31 [#32](https://github.com/chez14/node-mal-api/pull/32) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/jest from 26.0.10 to 26.0.20 [#38](https://github.com/chez14/node-mal-api/pull/38) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.13.3 to 10.16.8 [#37](https://github.com/chez14/node-mal-api/pull/37) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump nock from 13.0.4 to 13.0.8 [#36](https://github.com/chez14/node-mal-api/pull/36) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/setup-node from v2.1.4 to v2.1.5 [#34](https://github.com/chez14/node-mal-api/pull/34) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/cache from v2.1.3 to v2.1.4 [#25](https://github.com/chez14/node-mal-api/pull/25) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 7.7.0 to 7.20.0 [#28](https://github.com/chez14/node-mal-api/pull/28) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump got from 11.5.2 to 11.8.1 [#19](https://github.com/chez14/node-mal-api/pull/19) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Chris Qiang ([@chez14](https://github.com/chez14))
+
+---
+
 # v1.1.0 (Sat Jan 30 2021)
 
 #### 🚀 Enhancement
