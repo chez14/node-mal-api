@@ -35,6 +35,6 @@
     "url": "https://github.com/chez14/node-mal-api/issues"
   },
   "dependencies": {
-    "got": "^11.5.2"
+    "got": "^12.5.3"
   }
 }
